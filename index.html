@@ -48,7 +48,8 @@
     <script type="text/babel" data-type="module">
         import React, { useState, useEffect } from 'react';
         import { createRoot } from 'react-dom/client';
-        import { Moon, Sun, Laptop, MapPin, Calendar, ExternalLink, ArrowRight, Github, Mail, MonitorPlay } from 'lucide-react';
+        // FileText 아이콘 추가
+        import { Moon, Sun, Laptop, MapPin, Calendar, ExternalLink, ArrowRight, Github, Mail, MonitorPlay, FileText } from 'lucide-react';
 
         const App = () => {
             // Default to Dark Mode (true)
@@ -140,7 +141,7 @@
                     <span className="text-sm font-normal opacity-70">(근데 Replit을 곁들인.)</span>
                     </p>
 
-                    <div className={`w-full p-6 rounded-xl border mb-10 ${isDarkMode ? 'bg-[#1c1c21] border-gray-800' : 'bg-gray-50 border-gray-200'}`}>
+                    <div className={`w-full p-6 rounded-xl border mb-6 ${isDarkMode ? 'bg-[#1c1c21] border-gray-800' : 'bg-gray-50 border-gray-200'}`}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12 text-sm">
                         <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-3">
@@ -171,6 +172,20 @@
                         </div>
                     </div>
                     </div>
+
+                    {/* Presentation Material Button - Tutorial Session Badge Style */}
+                    <a 
+                      href="https://drive.google.com" 
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`inline-block px-6 py-3 rounded-full border text-xs font-bold tracking-widest uppercase transition-all hover:scale-105 ${
+                        isDarkMode 
+                          ? 'border-orange-900 text-orange-400 bg-orange-950/30 hover:bg-orange-950/50 hover:border-orange-500' 
+                          : 'border-orange-200 text-orange-600 bg-orange-50 hover:bg-orange-100 hover:border-orange-300'
+                      }`}
+                    >
+                      발표 자료 보러가기
+                    </a>
                 </section>
 
                 {/* About Section */}
