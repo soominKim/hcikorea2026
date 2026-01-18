@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCI Korea 2026 Vibe Coding Tutorial</title>
+    
+    <!-- Google Fonts: Inter (Clean & Sophisticated) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
+                },
+            }
+        }
+    </script>
+
+    <!-- React & ReactDOM & Babel -->
+    <script type="importmap">
+        {
+            "imports": {
+                "react": "https://esm.sh/react@18.2.0",
+                "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+                "lucide-react": "https://esm.sh/lucide-react@0.263.1"
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Smooth scrolling for anchor links */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { Moon, Sun, Laptop, MapPin, Calendar, ExternalLink, ArrowRight, Github, Mail, MonitorPlay } from 'lucide-react';
+
+        const App = () => {
+            // Default to Dark Mode (true)
+            const [isDarkMode, setIsDarkMode] = useState(true);
+            const [activeSection, setActiveSection] = useState('home');
+
+            // Apply dark mode class to html element for Tailwind
+            useEffect(() => {
+                if (isDarkMode) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            }, [isDarkMode]);
+
+            const toggleTheme = () => {
+                setIsDarkMode(!isDarkMode);
+            };
+
+            const scrollToSection = (id) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    setActiveSection(id);
+                }
+            };
+
+            // Replit Logo URLs
+            const replitLight = "https://github.com/smsoominkim/smsoominkim.github.io/blob/main/images/replit_light.png?raw=true";
+            const replitDark = "https://github.com/smsoominkim/smsoominkim.github.io/blob/main/images/replit_dark.png?raw=true";
+            const heroImage = "https://github.com/smsoominkim/smsoominkim.github.io/blob/main/images/vc_thumb.png?raw=true";
+
+            const curriculum = [
+                { step: "Step 1", title: "AI와 PRD 작성하기", desc: "AI가 열일하게 만드는 PRD 구성 요소를 살펴봅니다." },
+                { step: "Step 2", title: "Replit으로 기획-개발-배포", desc: "프로덕트 풀 사이클을 직접 다루어봅니다." },
+                { step: "Step 3", title: "DB와 API 연결하기", desc: "진짜 서비스처럼 데이터와 API를 연동해봅니다." },
+                { step: "Step 4", title: "AI로 디버깅하기", desc: "오류 해결? 디버깅도 바이브로 🎵 해결합니다." },
+                { step: "Step 5", title: "SEO 설정하기", desc: "구글에 내 서비스가 검색되게 만듭니다 🔍" },
+            ];
+
+            return (
+                <div className={`min-h-screen transition-colors duration-300 font-sans selection:bg-orange-500 selection:text-white ${isDarkMode ? 'bg-[#0e0e11] text-gray-100' : 'bg-white text-gray-900'}`}>
+                
+                {/* Navigation */}
+                <nav className={`fixed top-0 w-full z-50 transition-colors duration-300 border-b ${isDarkMode ? 'bg-[#0e0e11]/80 border-gray-800 backdrop-blur-md' : 'bg-white/80 border-gray-100 backdrop-blur-md'}`}>
+                    <div className="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
+                    <div className="font-semibold text-sm tracking-tight cursor-pointer hover:opacity-70 transition-opacity" onClick={() => scrollToSection('home')}>
+                        HCI KOREA 2026
+                    </div>
+                    
+                    <div className="flex items-center gap-8">
+                        <ul className="hidden md:flex gap-6 text-xs font-medium tracking-wide">
+                        {['HOME', 'ABOUT', 'CURRICULUM', 'YOUR DEMO HUMAN'].map((item) => (
+                            <li key={item}>
+                            <button 
+                                onClick={() => scrollToSection(item.toLowerCase().replace(/ /g, '-'))}
+                                className={`uppercase hover:text-orange-500 transition-colors ${activeSection === item.toLowerCase().replace(/ /g, '-') ? 'text-orange-500' : isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                            >
+                                {item}
+                            </button>
+                            </li>
+                        ))}
+                        </ul>
+                        <button 
+                        onClick={toggleTheme}
+                        className={`p-2 rounded-full transition-colors ${isDarkMode ? 'hover:bg-gray-800 text-gray-400' : 'hover:bg-gray-100 text-gray-600'}`}
+                        aria-label="Toggle Dark Mode"
+                        >
+                        {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+                        </button>
+                    </div>
+                    </div>
+                </nav>
+
+                {/* Hero Section */}
+                <section id="home" className="pt-32 pb-20 px-6 max-w-4xl mx-auto flex flex-col items-start justify-center min-h-[80vh]">
+                    <div className="mb-6 flex items-center gap-2">
+                    <span className={`px-3 py-1 text-[10px] font-bold tracking-wider uppercase rounded-full border ${isDarkMode ? 'border-orange-900 text-orange-400 bg-orange-950/30' : 'border-orange-200 text-orange-600 bg-orange-50'}`}>
+                        Tutorial Session
+                    </span>
+                    <span className={`text-[11px] ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>Jan 27, 2026</span>
+                    </div>
+
+                    <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 tracking-tight">
+                    Vibe Coding: <br className="md:hidden"/> Full Cycle Prototyping
+                    </h1>
+                    <p className={`text-lg md:text-xl font-medium mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                    기획부터 배포까지, AI와 함께하는 풀사이클 프로토타이핑 <br/>
+                    <span className="text-sm font-normal opacity-70">(근데 Replit을 곁들인.)</span>
+                    </p>
+
+                    <div className={`w-full p-6 rounded-xl border mb-10 ${isDarkMode ? 'bg-[#1c1c21] border-gray-800' : 'bg-gray-50 border-gray-200'}`}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12 text-sm">
+                        <div className="flex flex-col gap-4">
+                        <div className="flex items-center gap-3">
+                            <Calendar size={18} className="text-orange-500 shrink-0" />
+                            <span>1/27 (Tue) 16:50 ~ 18:00</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <MapPin size={18} className="text-orange-500 shrink-0" />
+                            <span>소노캄 2F 루비 ll</span>
+                        </div>
+                        </div>
+                        <div className="flex flex-col gap-4">
+                        <div className="flex items-center gap-3">
+                            <Laptop size={18} className="text-orange-500 shrink-0" />
+                            <span>준비물: 노트북, 아이디어</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <MonitorPlay size={18} className="text-orange-500 shrink-0" />
+                            <div className="flex items-center gap-2">
+                            <span>Main Tool:</span>
+                            <img 
+                                src={isDarkMode ? replitDark : replitLight} 
+                                alt="Replit Logo" 
+                                className="h-7 object-contain ml-1"
+                                />
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                {/* About Section */}
+                <section id="about" className={`py-20 px-6 border-t ${isDarkMode ? 'border-gray-800' : 'border-gray-100'}`}>
+                    <div className="max-w-4xl mx-auto">
+                    <div className="mb-12">
+                        <h2 className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-3">Introduction</h2>
+                        <h3 className="text-2xl font-semibold mb-6">
+                        "아 이거 서비스로 만들면 대박일 것 같은데… <br/>
+                        개발은 왜 이렇게 어려운 거야?"
+                        </h3>
+                        <p className={`text-sm leading-relaxed max-w-2xl ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        한 번쯤 이런 생각 해보셨죠? 근데 개발자한테 물어보니… 🫠 <br/><br/>
+                        이제는 <strong>바이브 코딩 시대</strong>입니다. AI와 대화하며 소프트웨어를 만드는 방식이죠. 
+                        복잡한 문법을 몰라도 괜찮습니다. 기획력만 있다면 누구나 서비스 크리에이터가 될 수 있습니다 💫
+                        </p>
+                    </div>
+
+                    <div className="w-full aspect-video rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 mb-12 shadow-sm relative group">
+                        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img 
+                        src={heroImage} 
+                        alt="Vibe Coding Session Thumbnail" 
+                        className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                        />
+                    </div>
+
+                    <div className={`p-6 border-l-2 ${isDarkMode ? 'border-orange-500 bg-gray-900/30' : 'border-orange-500 bg-orange-50/50'}`}>
+                        <p className="text-sm font-medium">
+                        이번 튜토리얼에서는 Replit을 활용해 <span className="text-orange-500">기획부터 개발, 디자인, 배포, 디버깅, SEO까지</span> 전 과정을 직접 해봅니다. 
+                        HCI 연구자, 예비 창업가, 기획만 하다 지친 PM... 내 손으로 뭔가 만들고 싶었던 분들 다 오세요. 
+                        우리 함께 빌더 스킬 레벨업해보시죠 😎
+                        </p>
+                    </div>
+                    </div>
+                </section>
+
+                {/* Curriculum Section */}
+                <section id="curriculum" className={`py-20 px-6 border-t ${isDarkMode ? 'border-gray-800' : 'border-gray-100'}`}>
+                    <div className="max-w-4xl mx-auto">
+                    <h2 className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-10">Curriculum</h2>
+                    
+                    <div className="relative">
+                        {/* Vertical Line */}
+                        <div className={`absolute left-4 top-0 bottom-0 w-px ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}></div>
+
+                        <div className="space-y-12">
+                        {curriculum.map((item, index) => (
+                            <div key={index} className="relative flex items-start gap-8 group">
+                            {/* Dot */}
+                            <div className={`relative z-10 flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center border text-[10px] font-bold ${isDarkMode ? 'bg-[#0e0e11] border-gray-700 text-gray-300 group-hover:border-orange-500 group-hover:text-orange-500' : 'bg-white border-gray-300 text-gray-500 group-hover:border-orange-500 group-hover:text-orange-500'} transition-colors`}>
+                                {index + 1}
+                            </div>
+                            
+                            {/* Content */}
+                            <div className="pt-1">
+                                <span className={`text-[10px] font-bold uppercase tracking-wider mb-1 block ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                                {item.step}
+                                </span>
+                                <h4 className="text-lg font-bold mb-2 group-hover:text-orange-500 transition-colors">
+                                {item.title}
+                                </h4>
+                                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                {item.desc}
+                                </p>
+                            </div>
+                            </div>
+                        ))}
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                {/* Speaker Section (Renamed to Your Demo Human) */}
+                <section id="your-demo-human" className={`py-20 px-6 border-t ${isDarkMode ? 'border-gray-800' : 'border-gray-100'}`}>
+                    <div className="max-w-4xl mx-auto">
+                    <div className={`rounded-2xl p-8 md:p-12 ${isDarkMode ? 'bg-[#151518]' : 'bg-gray-50'}`}>
+                        <h2 className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-8">Your Demo Human</h2>
+                        
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 w-full md:w-auto">
+                            <h3 className="text-2xl font-bold mb-1">Soomin Kim</h3>
+                            <p className={`text-sm mb-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                            Taejae University
+                            </p>
+                            
+                            {/* Compact Code Block Style Contact Info */}
+                            <div className={`inline-block p-3 rounded-md text-[11px] font-mono leading-relaxed select-all border ${isDarkMode ? 'bg-[#0e0e11] border-gray-800 text-gray-400' : 'bg-white border-gray-200 text-gray-600'}`}>
+                            <div><span className="opacity-40 select-none mr-2">$</span>smsoominkim@gmail.com</div>
+                            <div>
+                                <span className="opacity-40 select-none mr-2">$</span>
+                                <a href="https://soominkim.github.io" target="_blank" rel="noreferrer" className="hover:text-orange-500 transition-colors">
+                                soominkim.github.io
+                                </a>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        <div className="max-w-md pt-2">
+                            <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            HCI 연구자이자 프로덕트 메이커입니다. 기술의 장벽을 낮추고 누구나 창작자가 될 수 있는 도구와 방법에 관심이 많습니다. 이번 세션에서는 AI와 함께하는 새로운 코딩 패러다임을 공유합니다.
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                {/* Footer */}
+                <footer className={`py-12 px-6 text-center ${isDarkMode ? 'bg-[#0e0e11] border-t border-gray-800' : 'bg-white border-t border-gray-100'}`}>
+                    <p className={`text-[10px] tracking-widest uppercase ${isDarkMode ? 'text-gray-600' : 'text-gray-400'}`}>
+                    © 2026 HCI Korea Vibe Coding Tutorial. All rights reserved.
+                    </p>
+                </footer>
+                </div>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
