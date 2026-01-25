@@ -48,8 +48,8 @@
     <script type="text/babel" data-type="module">
         import React, { useState, useEffect } from 'react';
         import { createRoot } from 'react-dom/client';
-        // FileText 아이콘 추가
-        import { Moon, Sun, Laptop, MapPin, Calendar, ExternalLink, ArrowRight, Github, Mail, MonitorPlay, FileText } from 'lucide-react';
+        // FileText, BookOpen 아이콘 추가
+        import { Moon, Sun, Laptop, MapPin, Calendar, ExternalLink, ArrowRight, Github, Mail, MonitorPlay, FileText, Quote, ShoppingCart } from 'lucide-react';
 
         const App = () => {
             // Default to Dark Mode (true)
@@ -81,6 +81,7 @@
             const replitLight = "https://github.com/smsoominkim/smsoominkim.github.io/blob/main/images/replit_light.png?raw=true";
             const replitDark = "https://github.com/smsoominkim/smsoominkim.github.io/blob/main/images/replit_dark.png?raw=true";
             const heroImage = "https://github.com/smsoominkim/smsoominkim.github.io/blob/main/images/vc_thumb.png?raw=true";
+            const bookImage = "https://github.com/soominKim/hcikorea2026/blob/main/aitionship2.jpg?raw=true";
 
             const curriculum = [
                 { step: "Step 1", title: "AI와 PRD 작성하기", desc: "AI가 열일하게 만드는 PRD 구성 요소를 살펴봅니다." },
@@ -102,11 +103,11 @@
                     
                     <div className="flex items-center gap-8">
                         <ul className="hidden md:flex gap-6 text-xs font-medium tracking-wide">
-                        {['HOME', 'ABOUT', 'CURRICULUM', 'YOUR DEMO HUMAN'].map((item) => (
+                        {['HOME', 'ABOUT', 'CURRICULUM', 'YOUR DEMO HUMAN', 'AI:TIONSHIP'].map((item) => (
                             <li key={item}>
                             <button 
-                                onClick={() => scrollToSection(item.toLowerCase().replace(/ /g, '-'))}
-                                className={`uppercase hover:text-orange-500 transition-colors ${activeSection === item.toLowerCase().replace(/ /g, '-') ? 'text-orange-500' : isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                                onClick={() => scrollToSection(item.toLowerCase().replace(/[: ]/g, '-'))}
+                                className={`uppercase hover:text-orange-500 transition-colors ${activeSection === item.toLowerCase().replace(/[: ]/g, '-') ? 'text-orange-500' : isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
                             >
                                 {item}
                             </button>
@@ -291,6 +292,86 @@
                         </div>
                         </div>
                     </div>
+                    </div>
+                </section>
+
+                 {/* Introduce AI:Tionship Section */}
+                <section id="ai-tionship" className={`py-20 px-6 border-t ${isDarkMode ? 'border-gray-800' : 'border-gray-100'}`}>
+                    <div className="max-w-4xl mx-auto">
+                        <div className="flex flex-col md:flex-row gap-12 items-start">
+                            {/* Left Content */}
+                            <div className="flex-1">
+                                <h2 className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-6">Introduce AI:Tionship</h2>
+                                <h3 className="text-2xl font-bold mb-4">
+                                    2026년 신간 <br/>『AI션십』이 나왔습니다!
+                                </h3>
+                                
+                                {/* Book Image (Clickable) - Size increased */}
+                                <div className="mb-6">
+                                    <a href="https://product.kyobobook.co.kr/detail/S000219080971" target="_blank" rel="noreferrer">
+                                        <img 
+                                            src={bookImage} 
+                                            alt="AI션십 Book Cover" 
+                                            className="w-48 rounded-lg shadow-lg hover:opacity-90 hover:scale-105 transition-all duration-300 cursor-pointer"
+                                        />
+                                    </a>
+                                </div>
+
+                                <p className={`text-sm leading-relaxed mb-8 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                    기술서는 아닙니다. 엄밀히 트렌드서도 아닙니다. <br/>
+                                    사용자와 AI 사이의 관계와 인터랙션 그리고 서비스에 대한 책입니다.
+                                </p>
+                                
+                                <div className="space-y-3">
+                                    <h4 className={`text-xs font-bold uppercase tracking-wider mb-2 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>Get it on</h4>
+                                    
+                                    {/* Horizontal Layout for Links */}
+                                    <div className="flex flex-wrap gap-2">
+                                        <a href="https://product.kyobobook.co.kr/detail/S000219080971" target="_blank" rel="noreferrer" className={`flex items-center gap-2 p-2 rounded-lg border transition-all hover:scale-[1.02] ${isDarkMode ? 'border-gray-800 hover:border-orange-500 bg-[#151518]' : 'border-gray-200 hover:border-orange-300 bg-white'}`}>
+                                            <ShoppingCart size={14} className="text-orange-500" />
+                                            <span className="text-xs font-medium">교보문고</span>
+                                        </a>
+                                        <a href="https://m.yes24.com/goods/detail/175550093" target="_blank" rel="noreferrer" className={`flex items-center gap-2 p-2 rounded-lg border transition-all hover:scale-[1.02] ${isDarkMode ? 'border-gray-800 hover:border-orange-500 bg-[#151518]' : 'border-gray-200 hover:border-orange-300 bg-white'}`}>
+                                            <ShoppingCart size={14} className="text-orange-500" />
+                                            <span className="text-xs font-medium">예스24</span>
+                                        </a>
+                                        <a href="http://aladin.kr/p/6C0i6" target="_blank" rel="noreferrer" className={`flex items-center gap-2 p-2 rounded-lg border transition-all hover:scale-[1.02] ${isDarkMode ? 'border-gray-800 hover:border-orange-500 bg-[#151518]' : 'border-gray-200 hover:border-orange-300 bg-white'}`}>
+                                            <ShoppingCart size={14} className="text-orange-500" />
+                                            <span className="text-xs font-medium">알라딘</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right Content: Testimonials - Full Text, Small Font */}
+                            <div className="flex-1 w-full">
+                                <h2 className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-6 md:hidden">Testimonials</h2>
+                                <div className="space-y-6">
+                                    {/* Testimonial 1 */}
+                                    <div className={`p-6 rounded-xl border relative ${isDarkMode ? 'bg-[#151518] border-gray-800' : 'bg-gray-50 border-gray-200'}`}>
+                                        <Quote size={20} className="text-orange-500 mb-3 opacity-50" />
+                                        <p className={`text-[11px] leading-relaxed mb-4 text-justify ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                            저자와 제가 연구하고 있는 HCI Human-computer interaction(인간-컴퓨터 상호작용) 분야에서는 모델의 성능보다 사용자와의 ‘상호작용’이 AI의 핵심 가치임을 꾸준히 강조해 왔습니다. AI 네이티브 시대, 인간은 AI를 지휘하는 ‘오케스트레이터 Orchestrator’가 되어 ‘진정성’ 으로 승부해야 합니다. 모델 성능, GPU, 데이터센터 확보 전쟁이 한창인 2026년의 길목에서 AI의 응용 시대를 고민하는 연구자로서, 저는 인간 중심, 관계 중심 AI의 가치를 강조하는 이 책이 출간되어 매우 기쁘게 생각합니다.
+                                        </p>
+                                        <div>
+                                            <p className="text-sm font-bold">김주호</p>
+                                            <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>카이스트 전산학부 교수</p>
+                                        </div>
+                                    </div>
+                                    {/* Testimonial 2 */}
+                                    <div className={`p-6 rounded-xl border relative ${isDarkMode ? 'bg-[#151518] border-gray-800' : 'bg-gray-50 border-gray-200'}`}>
+                                        <Quote size={20} className="text-orange-500 mb-3 opacity-50" />
+                                        <p className={`text-[11px] leading-relaxed mb-4 text-justify ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                            위대한 비즈니스에는 숫자나 벤치마크 점수로는 설명할 수 없는 무언가가 있습니다. 그것은 바로 브랜드, 신뢰, 스토리 같은 사람의 마음을 움직이는 요소들입니다. AI의 가치가 단순히 기술적 성능이나 벤치마크 점수로만 재단되는 지금, 이 책은 비즈니스의 성패를 가르는 진짜 승부처가 어디인지 명확히 일깨워줍니다. 이는 스캐터랩이 제타를 통해 매일 치열하게 고민하고 확인하고 있는 지점이기도 합니다. AI 네이티브 시대를 살아갈 이들에게, 이 책은 기술 서적 그 이상의 인문학적 통찰과 비즈니스적 영감을 동시에 선사할 것입니다.
+                                        </p>
+                                        <div>
+                                            <p className="text-sm font-bold">김종윤</p>
+                                            <p className={`text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-500'}`}>스캐터랩(제타) 대표</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
