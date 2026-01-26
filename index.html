@@ -3,12 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HCI Korea 2026 Vibe Coding Tutorial</title>
     
+    <!-- SEO: Title & Meta Description -->
+    <title>HCI Korea 2026 바이브코딩 튜토리얼 | 기획부터 배포까지 Full Cycle</title>
+    <meta name="description" content="2026년 1월 27일 HCI Korea 학회에서 진행되는 바이브코딩 튜토리얼입니다. Replit을 활용해 기획, 개발, 배포, SEO까지 경험하는 풀사이클 바이브코딩 강의를 만나보세요.">
+    <meta name="keywords" content="바이브코딩 튜토리얼, HCI 학회 튜토리얼, HCI학회 바이브코딩, 바이브코딩 강의, Replit 강의, HCI Korea 2026, AI 프로토타이핑">
+    <meta name="author" content="Soomin Kim">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook / KakaoTalk (SNS 공유 최적화) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soominkim.github.io/">
+    <meta property="og:title" content="HCI Korea 2026 바이브코딩 튜토리얼">
+    <meta property="og:description" content="기획부터 배포까지, AI와 함께하는 풀사이클 프로토타이핑. 2026년 1월 27일 소노캄.">
+    <meta property="og:image" content="https://github.com/smsoominkim/smsoominkim.github.io/blob/main/images/vc_thumb.png?raw=true">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://soominkim.github.io/">
+    <meta property="twitter:title" content="HCI Korea 2026 바이브코딩 튜토리얼">
+    <meta property="twitter:description" content="기획부터 배포까지, AI와 함께하는 풀사이클 프로토타이핑. Replit과 함께하는 실습 튜토리얼.">
+    <meta property="twitter:image" content="https://github.com/smsoominkim/smsoominkim.github.io/blob/main/images/vc_thumb.png?raw=true">
+
     <!-- Google Fonts: Inter (Clean & Sophisticated) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data (구글이 이 페이지를 '이벤트'로 인식하도록 설정) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationEvent",
+      "name": "HCI Korea 2026 바이브코딩 튜토리얼",
+      "description": "AI와 함께하는 풀사이클 프로토타이핑 바이브코딩 튜토리얼 세션입니다.",
+      "startDate": "2026-01-27T16:40:00+09:00",
+      "endDate": "2026-01-27T17:50:00+09:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "소노캄 고양",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "소노캄 2F 루비 ll",
+          "addressLocality": "Goyang-si",
+          "addressRegion": "Gyeonggi-do",
+          "addressCountry": "KR"
+        }
+      },
+      "image": [
+        "https://github.com/smsoominkim/smsoominkim.github.io/blob/main/images/vc_thumb.png?raw=true"
+      ],
+      "performer": {
+        "@type": "Person",
+        "name": "Soomin Kim",
+        "url": "https://soominkim.github.io"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "HCI Korea 2026",
+        "url": "https://conference.hcikorea.org/"
+      }
+    }
+    </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -97,9 +155,9 @@
                 {/* Navigation */}
                 <nav className={`fixed top-0 w-full z-50 transition-colors duration-300 border-b ${isDarkMode ? 'bg-[#0e0e11]/80 border-gray-800 backdrop-blur-md' : 'bg-white/80 border-gray-100 backdrop-blur-md'}`}>
                     <div className="max-w-4xl mx-auto px-6 h-16 flex justify-between items-center">
-                    <div className="font-semibold text-sm tracking-tight cursor-pointer hover:opacity-70 transition-opacity" onClick={() => scrollToSection('home')}>
+                    <h1 className="font-semibold text-sm tracking-tight cursor-pointer hover:opacity-70 transition-opacity" onClick={() => scrollToSection('home')}>
                         HCI KOREA 2026
-                    </div>
+                    </h1>
                     
                     <div className="flex items-center gap-8">
                         <ul className="hidden md:flex gap-6 text-xs font-medium tracking-wide">
